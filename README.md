@@ -1,4 +1,4 @@
-# Banking Web Application – Admin Authentication Module (MVC Architecture)
+# Banking Web Application (MVC Architecture)
 
 # Overview
 
