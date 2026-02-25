@@ -10,6 +10,7 @@ import com.bank.util.DBConnection;
 
 public class AdminDao {
 
+	// login
 	public boolean login(Admin admin) {
 		
 		try(Connection connection = DBConnection.getConnection()) {
@@ -33,4 +34,29 @@ public class AdminDao {
 		return false;
 	}
 	
+	// registration
+	public int registration(Admin admin) {
+		
+		int c = 0;
+		
+		String sql = "INSERT INTO admin(name, mail, password) VALUES (?, ?, ?);";
+		
+		try(Connection connection = DBConnection.getConnection()) {
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, admin.getName());
+			preparedStatement.setString(2, admin.getMail());
+			preparedStatement.setString(3, admin.getPassword());
+			
+			 if (preparedStatement.executeUpdate() > 0) {
+				 return c;
+			 }
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return 1;
+		
+	}
 }

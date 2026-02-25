@@ -13,11 +13,12 @@ import com.bank.model.Admin;
 import com.bank.service.AdminService;
 import com.bank.util.DBConnection;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/adminLogin")
+public class AdminLoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
 	
 	// Objects creation
-	private DBConnection con = new DBConnection();
 	private AdminService adminService = new AdminService();
 	
 
@@ -25,9 +26,9 @@ public class LoginServlet extends HttpServlet {
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
 		
-		Admin adminLogin = new Admin(mail, password);
+		Admin admin = new Admin(mail, password);
 		
-		if (adminService.login(adminLogin)) {
+		if (adminService.login(admin)) {
 			System.out.println("Login Done");
 			
 			request.setAttribute("mail", mail);
@@ -38,7 +39,9 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			System.out.println("Login fail");
 			
-			response.sendRedirect("login.jsp");
+			request.setAttribute("error", "Wrong credentials entered");
+		    request.getRequestDispatcher("adminLogin.jsp")
+		           .forward(request, response);
 		}
 		
 	}
