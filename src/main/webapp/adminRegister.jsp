@@ -127,12 +127,16 @@
 
         <div class="form-group">
             <label>Full Name</label>
-            <input type="text" name="name" required>
+            <input type="text" name="name" 
+            value="<%= request.getAttribute("name") != null ? request.getAttribute("name") : "" %>"
+            required>
         </div>
 
         <div class="form-group">
             <label>Email</label>
-            <input type="email" name="mail" required>
+            <input type="email" name="mail" 
+            value="<%= request.getAttribute("mail") != null ? request.getAttribute("mail") : "" %>"
+            required>
         </div>
 
         <div class="form-group">

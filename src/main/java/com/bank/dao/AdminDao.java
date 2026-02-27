@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.bank.model.Admin;
+import com.bank.model.User;
 import com.bank.util.DBConnection;
 
 public class AdminDao {
@@ -58,5 +59,62 @@ public class AdminDao {
 		
 		return 1;
 		
+	}
+	
+	// account creation 
+	public long accountCreation(User user) {
+		
+		String sql = "INSERT INTO user(name, mail, amount) VALUES (?, ?, ?);";
+		
+		try(Connection connection = DBConnection.getConnection()) {
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, user.getName());
+			preparedStatement.setString(2, user.getMail());
+			preparedStatement.setDouble(3, user.getAmount());
+			
+			if (preparedStatement.executeUpdate() > 0) {				
+				
+				long accountNumber = 1003441000;
+				
+				// get the id and generate the account number 
+				try {
+			
+					PreparedStatement preparedStatement2 = connection.prepareStatement("SELECT * FROM user WHERE mail = ?;");
+					preparedStatement2.setString(1, user.getMail());
+					
+					ResultSet resultSet = preparedStatement2.executeQuery();
+					
+					while(resultSet.next()) {
+						accountNumber = accountNumber + resultSet.getInt(1);
+					}
+					
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+				
+				// account number update to that DB table				
+				String accountSQL = "UPDATE user SET accountNumber = ? WHERE mail = ?;"; 
+				
+				PreparedStatement preparedStatement3 = connection.prepareStatement(accountSQL);
+				preparedStatement3.setLong(1, accountNumber);
+				preparedStatement3.setString(2, user.getMail());
+				
+				if (preparedStatement3.executeUpdate() > 0) {
+					
+					System.out.println("Account Number: " + accountNumber);
+					
+					return accountNumber;
+				}
+				
+			} else {
+				return -1;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		return -1;
 	}
 }

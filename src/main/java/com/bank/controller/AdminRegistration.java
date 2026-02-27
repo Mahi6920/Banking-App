@@ -25,11 +25,17 @@ public class AdminRegistration extends HttpServlet {
 		String password = request.getParameter("password");
 		String confirmPassword = request.getParameter("confirmPassword");
 
+		request.setAttribute("name", name);
+		request.setAttribute("mail", mail);
+		
 		if (!password.equals(confirmPassword)) {
+			System.out.println("Registration Fail");
+			
 			request.setAttribute("error", "Passwords do not match");
+
 			request.getRequestDispatcher("adminRegister.jsp")
 			.forward(request, response);
-			//		    return;   // VERY IMPORTANT
+			return;   // VERY IMPORTANT
 		}
 
 		Admin admin = new Admin(name, mail, password);
@@ -59,6 +65,7 @@ public class AdminRegistration extends HttpServlet {
 			request.getRequestDispatcher("adminRegister.jsp")
 			.forward(request, response);
 		}
+		
 
 	}
 

@@ -34,7 +34,7 @@ public class AdminLoginServlet extends HttpServlet {
 			request.setAttribute("mail", mail);
 			request.setAttribute("password", password);
 			
-			response.sendRedirect("adminDashboard.jsp");
+			response.sendRedirect(request.getContextPath() + "/adminDashboard.jsp");
 			
 		} else {
 			System.out.println("Login fail");

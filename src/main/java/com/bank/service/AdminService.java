@@ -2,6 +2,7 @@ package com.bank.service;
 
 import com.bank.dao.AdminDao;
 import com.bank.model.Admin;
+import com.bank.model.User;
 
 public class AdminService {
 	
@@ -42,6 +43,18 @@ public class AdminService {
 		}
 		
 		return adminDao.registration(admin);
+	}
+	
+	public long accountCreation(User user) {
+		if (user == null) {
+			return -1;
+		} else if (user.getMail() == null) {
+			return -1;
+		} else if (user.getAmount() < 0) {
+			return -1;
+		}
+		
+		return adminDao.accountCreation(user);
 	}
 	
 }

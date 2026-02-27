@@ -144,7 +144,7 @@
     </form>
 
     <div class="extra-links">
-        <a href="adminRegister.jsp">Register</a> |
+        <a href="adminRegister.jsp">Register</a>
         <a href="forgotPassword.jsp">Forgot Password?</a>
     </div>
 
