@@ -34,6 +34,7 @@ This separation ensures scalability, maintainability, and clean code organizatio
   - Apache Tomcat
   - MySQL
 
+
 # Features Implemented
 
   - Admin Registration
@@ -44,6 +45,21 @@ This separation ensures scalability, maintainability, and clean code organizatio
   - MVC-based structured implementation
   - JDBC-based MySQL database integration
 
+# Admin Dashboard & Account Creation Module
 
+# Admin Dashboard Features
+  - Session-based admin access control
+  - Navigation interface for account management
+  - Modular structure for future extensions (View Users, Delete Account, Transactions)
+  - The dashboard is protected using session validation to prevent unauthorized access.
 
+# Account Creation Module
+The Account Creation feature allows the admin to:
+  - Enter user details (Name, Email)
+  - Set initial deposit amount
+  - Select account type (Savings / Current)
+  - Validate input data before processing
 
+# Account Number Generation
+The account number is generated automatically using the database AUTO_INCREMENT primary key (ID).
+Each new account receives a unique account number based on the incremented ID value.
