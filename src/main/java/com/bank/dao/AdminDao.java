@@ -2,12 +2,16 @@ package com.bank.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.bank.model.Account;
 import com.bank.model.Admin;
 import com.bank.model.User;
 import com.bank.util.DBConnection;
+
 
 public class AdminDao {
 
@@ -116,5 +120,34 @@ public class AdminDao {
 		}
 
 		return -1;
+	}
+	
+	// view accounts
+	public List<Account> viewAccount(){
+		List<Account> list = new ArrayList<>();
+		
+		String sql = "SELECT * FROM user";
+		
+		try(Connection connection = DBConnection.getConnection()) {
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				Account account = new Account(
+						resultSet.getInt("id"), 
+						resultSet.getString("name"), 
+						resultSet.getString("mail"),
+						resultSet.getDouble("amount"),
+						resultSet.getLong("accountNumber")
+						);
+				list.add(account);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return list;
 	}
 }

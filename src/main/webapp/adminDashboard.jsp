@@ -101,7 +101,7 @@
         </div>
 
         <div class="card">
-            <a href="viewUsers">View Users</a>
+            <a href="viewAccounts">View Users</a>
         </div>
 
         <div class="card">
