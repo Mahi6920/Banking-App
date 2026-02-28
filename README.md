@@ -63,3 +63,20 @@ The Account Creation feature allows the admin to:
 # Account Number Generation
 The account number is generated automatically using the database AUTO_INCREMENT primary key (ID).
 Each new account receives a unique account number based on the incremented ID value.
+
+# View Accounts Module
+The View Accounts module allows the admin to retrieve and display all registered user accounts in a structured tabular format.
+
+# This feature follows the MVC architecture:
+  - Controller: ViewAccountsServlet handles the request.
+  - Service Layer: Processes business logic.
+  - DAO Layer: Fetches account data using JDBC.
+  - View (JSP): Displays the data in a styled table.
+
+# Features
+  - Fetches all account records from the database
+  - Displays account number (AUTO_INCREMENT ID), name, email, balance, and accountNumber
+  - Styled table with alternating row colors for better readability
+  - Session-based access protection to restrict unauthorized users
+  - This module demonstrates proper separation of concerns, clean data flow from database to UI, and secure admin-level data visibility.
+
