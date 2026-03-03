@@ -80,3 +80,18 @@ The View Accounts module allows the admin to retrieve and display all registered
   - Session-based access protection to restrict unauthorized users
   - This module demonstrates proper separation of concerns, clean data flow from database to UI, and secure admin-level data visibility.
 
+# Admin Profile Module
+The Admin Profile module allows authenticated administrators to view their profile information securely within the system.
+
+This feature is implemented using proper MVC architecture:
+  - Controller: AdminProfileServlet
+  - View: adminProfile.jsp
+  - Session Management: Used to maintain authentication state
+
+# Key Features
+  - Session-based access control
+  - Redirects to login page if session is not active
+  - Displays admin ID, name, and email
+  - Password is not exposed in the UI
+
+
