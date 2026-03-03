@@ -1,14 +1,13 @@
 package com.bank.model;
 
 public class Admin {
-	
+	private int id;
 	private String name;
 	private String mail;
 	private String password;
 	
-	public Admin(String mail, String password) {
-		this.mail = mail;
-		this.password = password;
+	public Admin() {
+		
 	}
 	
 	public Admin(String name, String mail, String password) {
@@ -17,6 +16,20 @@ public class Admin {
 		this.password = password;
 	}
 	
+	public Admin(int id, String name, String mail) {
+		this.id = id;
+		this.name = name;
+		this.mail = mail;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}

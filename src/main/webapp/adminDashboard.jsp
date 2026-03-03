@@ -105,7 +105,7 @@
         </div>
 
         <div class="card">
-            <a href="adminProfile.jsp">Admin Profile</a>
+            <a href="admin">Admin Profile</a>
         </div>
 
     </div>

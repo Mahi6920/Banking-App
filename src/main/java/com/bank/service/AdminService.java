@@ -65,4 +65,9 @@ public class AdminService {
 	public List<Account> viewAccount() {
 		return adminDao.viewAccount();
 	}
+	
+	public List<Admin> adminProfile(Admin admin) {
+		return adminDao.viewProfileByEMail(admin);
+	}
+	
 }

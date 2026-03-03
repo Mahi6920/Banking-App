@@ -150,4 +150,33 @@ public class AdminDao {
 		
 		return list;
 	}
+	
+	// view profile
+	public List<Admin> viewProfileByEMail(Admin admin) {
+		
+		List<Admin> list = new ArrayList<>();
+		
+		String sql = "SELECT * FROM admin WHERE mail = ?";
+		
+		try(Connection connection = DBConnection.getConnection()) {
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, admin.getMail());
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				 Admin admin1 = new Admin(
+						 	resultSet.getInt("id"), 
+							resultSet.getString("name"), 
+							resultSet.getString("mail")
+						 );
+				 list.add(admin1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return list;
+	}
 }
