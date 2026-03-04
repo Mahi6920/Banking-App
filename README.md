@@ -94,4 +94,51 @@ This feature is implemented using proper MVC architecture:
   - Displays admin ID, name, and email
   - Password is not exposed in the UI
 
+# Admin Logout Module
+The Logout Module ensures secure termination of an authenticated admin session. Once the admin clicks the logout option from the dashboard, the system invalidates the current session and redirects the user to the login page.
 
+# Key Features
+  - Uses HttpSession.invalidate() to destroy the active session.
+  - Prevents unauthorized access to protected pages after logout.
+  - Implements cache control headers to prevent browser back-button access to restricted pages.
+  - Redirects the admin safely to the login page after logout.
+
+# Flow
+```
+Admin Dashboard
+        ↓
+Logout Button
+        ↓
+LogoutServlet
+        ↓
+Session Invalidated
+        ↓
+Redirect to Admin Login Page
+```
+
+# Delete Account Module
+The Delete Account Module allows the administrator to remove user accounts from the banking system. The admin provides a valid account number, and the system verifies it before deleting the account from the database.
+
+# Key Features
+  - Admin can delete user accounts using the account number.
+  - Input validation ensures the account number is not empty or invalid or less than 10 characters.
+  - Uses the MVC architecture (JSP -> Servlet → Service → DAO).
+  - Displays success or error messages based on the deletion result.
+
+# Flow
+```
+DeleteAccount.jsp
+        ↓
+AdminDeleteAccountServlet
+        ↓
+AdminService
+        ↓
+AdminDAO
+        ↓
+Database
+```
+
+# Validation
+The system checks:
+  - Account number is provided.
+  - Account exists in the database before deletion.
