@@ -4,7 +4,14 @@ public class User {
 	private String name;
 	private String mail;
 	private double amount;
+	private long accountNumber;
 	
+	public long getAccountNumber() {
+		return accountNumber;
+	}
+	public void setAccountNumber(long accountNumber) {
+		this.accountNumber = accountNumber;
+	}
 	public String getName() {
 		return name;
 	}

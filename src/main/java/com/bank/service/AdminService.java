@@ -70,4 +70,9 @@ public class AdminService {
 		return adminDao.viewProfileByEMail(admin);
 	}
 	
+	// delete account
+	public boolean deleteAccountNumber(User user) {
+				
+		return adminDao.deleteAccount(user);
+	}
 }

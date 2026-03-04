@@ -179,4 +179,27 @@ public class AdminDao {
 		
 		return list;
 	}
+	
+	// delete account 
+	public boolean deleteAccount(User user) {
+		
+		String sql = "DELETE FROM user WHERE accountNumber = ?;";
+		
+		try(Connection connection = DBConnection.getConnection()) {
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setLong(1, user.getAccountNumber());
+			
+			int execute = preparedStatement.executeUpdate();
+			
+			if (execute > 0) {
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		return false;
+	}
 }
