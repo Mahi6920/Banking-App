@@ -4,10 +4,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.bank.model.Account;
 import com.bank.model.Admin;
 import com.bank.service.AdminService;
 
@@ -29,23 +27,12 @@ public class AdminProfileServlet extends HttpServlet {
         Admin admin = (Admin) session.getAttribute("admin");
         admin.setMail(admin.getMail());
         
-        
-//        List<Admin> profile = new ArrayList<>();
-        
         List<Admin> list = new AdminService().adminProfile(admin);
         
         request.setAttribute("admin", list);
 		request.getRequestDispatcher("adminProfile.jsp")
         .forward(request, response);
-        
-        
-//        if (profile != null) {
-//        	request.setAttribute("adminDetails", admin);
-//
-//            request.getRequestDispatcher("adminProfile.jsp")
-//                   .forward(request, response);
-//        }
-      
+             
         
     }
 }

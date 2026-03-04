@@ -24,10 +24,6 @@ public class AdminLoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
-
-//		request.getSession().setAttribute("admin", mail);
-			
-//		Admin admin = new Admin(mail, password);
 		
 		Admin admin = new Admin();
 		
@@ -36,10 +32,9 @@ public class AdminLoginServlet extends HttpServlet {
 		
 				
 		if (adminService.login(admin)) {
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("admin", admin);
-
-//			response.sendRedirect("adminDashboard.jsp");
 			
 			response.sendRedirect("adminDashboard");
 		} else {
@@ -49,7 +44,6 @@ public class AdminLoginServlet extends HttpServlet {
 			request.getRequestDispatcher("adminLogin.jsp")
 			.forward(request, response);
 		}
-
 
 	}
 
